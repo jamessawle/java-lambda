@@ -23,6 +23,10 @@
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
+  "files": [
+    "dist/index.mjs",
+    "dist/index.d.ts"
+  ],
   "scripts": {
     "lint": "pnpm tsc && pnpm eslint . && pnpm prettier --check .",
     "lint:fix": "pnpm eslint . --fix && pnpm prettier --write .",
@@ -45,5 +49,5 @@
     "typescript": "^5.3.3",
     "typescript-eslint": "^7.1.0"
   },
-  "packageManager": "pnpm@7.33.7+sha256.d1581d46ed10f54ff0cbdd94a2373b1f070202b0fbff29f27c2ce01460427043"
+  "packageManager": "pnpm@8.15.4+sha256.cea6d0bdf2de3a0549582da3983c70c92ffc577ff4410cbf190817ddc35137c2"
 }
