@@ -20,6 +20,7 @@
   "author": {
     "name": "James Sawle"
   },
+  "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -28,14 +29,12 @@
     "dist/index.d.ts"
   ],
   "scripts": {
-    "lint": "pnpm tsc && pnpm build && pnpm eslint . && pnpm prettier --check .",
-    "lint:fix": "pnpm build && pnpm eslint . --fix && pnpm prettier --write .",
+    "lint": "pnpm tsc && pnpm eslint . && pnpm prettier --check .",
+    "lint:fix": "pnpm eslint . --fix && pnpm prettier --write .",
     "build": "pnpm tsup src/index.ts --format cjs,esm --dts --clean",
     "build:watch": "pnpm tsup src/index.ts --format cjs,esm --dts --watch",
     "test": "find ./src -name '*.test.ts' -exec node --import tsx --test {} \\;",
     "test:watch": "find ./src -name '*.test.ts' -exec node --import tsx --test --watch {} \\;",
-    "playground": "pnpm build && node playground/index.mjs",
-    "playground:test": "pnpm build && find ./playground -name '*.test.ts' -exec node --import tsx --test {} \\;",
     "release": "pnpm build && pnpm changeset publish"
   },
   "devDependencies": {

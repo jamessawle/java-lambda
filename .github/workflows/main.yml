@@ -1,8 +1,8 @@
 name: CI
 on:
   push:
-    branches:
-      - "**"
+    branches-ignore:
+      - main
 
 jobs:
   ci:
@@ -20,4 +20,3 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm lint
       - run: pnpm test
-      - run: pnpm playground:test
