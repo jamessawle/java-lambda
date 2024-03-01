@@ -1,7 +1,7 @@
 {
   "name": "@jamessawle/java-lambda",
   "version": "0.0.0",
-  "description": "Functional programming library bring Java Optional and lazily evaluated Streams to Javascript and Typescript",
+  "description": "Functional programming library bring lazily evaluated Java Optional and Streams to Javascript and Typescript",
   "repository": {
     "type": "git",
     "url": ""
