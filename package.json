@@ -1,18 +1,7 @@
 {
   "name": "@jamessawle/java-lambda",
   "version": "0.0.0",
-  "description": "Functional programming library bring lazily evaluated Java Optional and Streams to Javascript and Typescript",
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "author": {
-    "name": "James Sawle"
-  },
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "license": "MIT",
+  "description": "Functional programming library bringing lazily evaluated Java Optional and Streams to Javascript and Typescript",
   "keywords": [
     "typescript",
     "functional",
@@ -20,6 +9,20 @@
     "Stream",
     "Java"
   ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamessawle/java-lambda"
+  },
+  "bugs": {
+    "url": "https://github.com/jamessawle/java-lambda/issues"
+  },
+  "author": {
+    "name": "James Sawle"
+  },
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "scripts": {
     "lint": "pnpm tsc && pnpm eslint . && pnpm prettier --check .",
     "lint:fix": "pnpm eslint . --fix && pnpm prettier --write .",
@@ -28,7 +31,8 @@
     "test": "find ./src -name '*.test.ts' -exec node --import tsx --test {} \\;",
     "test:watch": "find ./src -name '*.test.ts' -exec node --import tsx --test --watch {} \\;",
     "playground": "pnpm build && node playground/index.mjs",
-    "playground:test": "pnpm build && find ./playground -name '*.test.ts' -exec node --import tsx --test {} \\;"
+    "playground:test": "pnpm build && find ./playground -name '*.test.ts' -exec node --import tsx --test {} \\;",
+    "release": "pnpm build && pnpm changeset publish"
   },
   "packageManager": "pnpm@8.15.4+sha256.cea6d0bdf2de3a0549582da3983c70c92ffc577ff4410cbf190817ddc35137c2",
   "devDependencies": {
