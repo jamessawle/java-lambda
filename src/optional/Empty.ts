@@ -1,13 +1,15 @@
 import { Consumer, Runnable, Supplier } from '../types'
 import { Optional } from './Optional'
 
+export class NoSuchElementError extends Error {}
+
 export class Empty<T> implements Optional<T> {
   filter = (): Optional<T> => this
 
   flatMap = <U>(): Optional<U> => this as unknown as Empty<U>
 
   get = () => {
-    throw new Error()
+    throw new NoSuchElementError()
   }
 
   ifPresent = (): void => {}
@@ -28,7 +30,7 @@ export class Empty<T> implements Optional<T> {
   orElseGet = (supplier: Supplier<T>): T => supplier.get()
 
   orElseThrow = <E>(supplier?: Supplier<E>): T => {
-    const error = supplier ? supplier.get() : new Error()
+    const error = supplier ? supplier.get() : new NoSuchElementError()
     throw error
   }
 }
