@@ -10,7 +10,7 @@ describe('Empty', () => {
       const optional: Optional<number> = new Empty()
       const mockTest = mock.fn<(value: number) => boolean>()
 
-      const result = optional.filter({ test: mockTest })
+      const result = optional.filter(mockTest)
 
       assert.equal(result, optional)
       assert.equal(
@@ -26,7 +26,7 @@ describe('Empty', () => {
       const optional: Optional<number> = new Empty()
       const mockApply = mock.fn<(value: number) => Optional<string>>()
 
-      const result = optional.flatMap({ apply: mockApply })
+      const result = optional.flatMap(mockApply)
 
       assert.equal(result, optional)
       assert.equal(
@@ -59,7 +59,7 @@ describe('Empty', () => {
       const optional: Optional<number> = new Empty()
       const mockAccept = mock.fn<(input: number) => void>()
 
-      optional.ifPresent({ accept: mockAccept })
+      optional.ifPresent(mockAccept)
 
       assert.equal(
         mockAccept.mock.calls.length,
@@ -75,7 +75,7 @@ describe('Empty', () => {
       const mockAccept = mock.fn<(input: number) => void>()
       const mockRun = mock.fn()
 
-      optional.ifPresentOrElse({ accept: mockAccept }, { run: mockRun })
+      optional.ifPresentOrElse(mockAccept, mockRun)
 
       assert.equal(
         mockRun.mock.calls.length,
@@ -132,7 +132,7 @@ describe('Empty', () => {
       const expected = new Present(12)
       const mockGet = mock.fn(() => expected)
 
-      const result = optional.or({ get: mockGet })
+      const result = optional.or(mockGet)
 
       assert.equal(result, expected)
       assert.equal(
@@ -160,7 +160,7 @@ describe('Empty', () => {
       const expected = 12
       const mockGet = mock.fn(() => expected)
 
-      const result = optional.orElseGet({ get: mockGet })
+      const result = optional.orElseGet(mockGet)
 
       assert.equal(result, expected)
       assert.equal(
@@ -196,7 +196,7 @@ describe('Empty', () => {
         const mockGet = mock.fn<() => Error>(() => expectedError)
 
         try {
-          optional.orElseThrow({ get: mockGet })
+          optional.orElseThrow(mockGet)
           assert.fail('NoSuchElementError should have been thrown')
         } catch (error) {
           assert.equal(error, expectedError)
