@@ -33,8 +33,8 @@
     "lint:fix": "pnpm eslint . --fix && pnpm prettier --write .",
     "build": "pnpm tsup src/index.ts --format cjs,esm --dts --clean",
     "build:watch": "pnpm tsup src/index.ts --format cjs,esm --dts --watch",
-    "test": "find ./src -name '*.test.ts' -exec node --import tsx --test {} \\;",
-    "test:watch": "find ./src -name '*.test.ts' -exec node --import tsx --test --watch {} \\;",
+    "test": "node --import tsx --experimental-test-coverage --test $(find ./src -type f -name '*.test.ts' -exec printf '%s ' {} +)",
+    "test:watch": "node --import tsx --watch --test $(find ./src -type f -name '*.test.ts' -exec printf '%s ' {} +)",
     "release": "pnpm build && pnpm changeset publish"
   },
   "devDependencies": {
