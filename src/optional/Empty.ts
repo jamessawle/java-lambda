@@ -15,7 +15,7 @@ export class Empty<T> implements Optional<T> {
   ifPresent = (): void => {}
 
   ifPresentOrElse = (_: Consumer<T>, emptyAction: Runnable): void =>
-    emptyAction.run()
+    emptyAction()
 
   isEmpty = (): boolean => true
 
@@ -23,14 +23,14 @@ export class Empty<T> implements Optional<T> {
 
   map = <U>(): Optional<U> => this as unknown as Optional<U>
 
-  or = (supplier: Supplier<Optional<T>>): Optional<T> => supplier.get()
+  or = (supplier: Supplier<Optional<T>>): Optional<T> => supplier()
 
   orElse = (other: T): T => other
 
-  orElseGet = (supplier: Supplier<T>): T => supplier.get()
+  orElseGet = (supplier: Supplier<T>): T => supplier()
 
   orElseThrow = <E>(supplier?: Supplier<E>): T => {
-    const error = supplier ? supplier.get() : new NoSuchElementError()
+    const error = supplier ? supplier() : new NoSuchElementError()
     throw error
   }
 }

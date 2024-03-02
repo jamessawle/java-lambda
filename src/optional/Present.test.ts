@@ -10,25 +10,25 @@ describe('Present Optional', () => {
       {
         title: 'should return Present Optional when predicate always passes',
         value: 12,
-        predicate: { test: () => true },
+        predicate: () => true,
         expectPresent: true,
       },
       {
         title: 'should return Present Optional when predicate passes',
         value: 12,
-        predicate: { test: (value: number) => value > 7 },
+        predicate: (value: number) => value > 7,
         expectPresent: true,
       },
       {
         title: 'should return Empty Optional when predicate always fails',
         value: 12,
-        predicate: { test: () => false },
+        predicate: () => false,
         expectPresent: false,
       },
       {
         title: 'should return Empty Optional when predicate passes',
         value: 12,
-        predicate: { test: (value: number) => value <= 7 },
+        predicate: (value: number) => value <= 7,
         expectPrsent: false,
       },
     ].forEach(({ title, value, predicate, expectPresent }) =>
@@ -69,7 +69,7 @@ describe('Present Optional', () => {
       },
     ].forEach(({ title, input, expected }) =>
       it(title, () => {
-        const mapper = { apply: () => expected }
+        const mapper = () => expected
 
         const result = input.flatMap(mapper)
 
@@ -99,7 +99,7 @@ describe('Present Optional', () => {
       const optional = new Present(value)
       const mockAction = mock.fn()
 
-      optional.ifPresent({ accept: mockAction })
+      optional.ifPresent(mockAction)
 
       assert.equal(
         mockAction.mock.calls.length,
@@ -126,7 +126,7 @@ describe('Present Optional', () => {
       const mockAction = mock.fn()
       const mockRunnable = mock.fn()
 
-      optional.ifPresentOrElse({ accept: mockAction }, { run: mockRunnable })
+      optional.ifPresentOrElse(mockAction, mockRunnable)
 
       assert.equal(
         mockAction.mock.calls.length,
@@ -203,7 +203,7 @@ describe('Present Optional', () => {
       },
     ].forEach(({ title, input, expected }) =>
       it(title, () => {
-        const mapper = { apply: () => expected }
+        const mapper = () => expected
 
         const result = input.map(mapper)
 
@@ -228,7 +228,7 @@ describe('Present Optional', () => {
         const optional: Optional<typeof value> = new Present(value)
         const mockGet = mock.fn<() => Optional<typeof value>>()
 
-        const result = optional.or({ get: mockGet })
+        const result = optional.or(mockGet)
 
         assert.equal(
           result instanceof Present,
@@ -285,7 +285,7 @@ describe('Present Optional', () => {
         const optional: Optional<typeof value> = new Present(value)
         const mockGet = mock.fn<() => typeof value>()
 
-        const result = optional.orElseGet({ get: mockGet })
+        const result = optional.orElseGet(mockGet)
 
         assert.equal(result, value, title)
         assert.equal(
@@ -308,7 +308,7 @@ describe('Present Optional', () => {
         const optional: Optional<typeof value> = new Present(value)
         const mockGet = mock.fn<() => Error>()
 
-        const result = optional.orElseThrow({ get: mockGet })
+        const result = optional.orElseThrow(mockGet)
 
         assert.equal(result, value, title)
         assert.equal(
