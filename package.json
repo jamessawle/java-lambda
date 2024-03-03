@@ -1,6 +1,6 @@
 {
   "name": "@jamessawle/java-lambda",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Functional programming library bringing lazily evaluated Java Optional and Streams to Javascript and Typescript",
   "keywords": [
     "typescript",
